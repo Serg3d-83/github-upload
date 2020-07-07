@@ -1,0 +1,30 @@
+version: '2'
+services:
+ db:
+  image: mariadb
+  restart: always
+  environment:
+    MYSQL_ROOT_PASSWORD: 123458678
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: test
+    MYSQL_PASSWORD: root123
+  volumes:
+  - ./dbs:/var/lib/mysql
+    
+ wordpress:
+  image: wordpress
+  restart: always
+  volumes:
+    - ./shara:/var/www/html
+  ports:
+  - 80:80
+
+ adminer:
+  image: adminer
+  restart: always
+  ports:
+  - 8080:8080
+
+volumes:
+ wordpress:
+ db:
