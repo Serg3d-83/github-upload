@@ -14,7 +14,7 @@ pipeline {
     Stages {
         stage ("Preparations") {
             steps {
-                sh 'ssh root@192.168.0.176 \'hostname'\''
+                sh 'ssh root@192.168.0.176 \'hostname\''
             }
         }
     }
