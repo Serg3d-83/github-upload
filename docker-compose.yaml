@@ -19,12 +19,6 @@ services:
   ports:
   - 80:80
 
- adminer:
-  image: adminer
-  restart: always
-  ports:
-  - 8080:8080
-
-volumes:
+ volumes:
  wordpress:
  db:
