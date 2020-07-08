@@ -29,7 +29,7 @@ pipeline {
         stage ('Docker push') {
             steps {
                 echo 'Upload image to DockerHub'
-                sh '''docker push serg3d83:101.01'''
+                sh '''docker push serg3d83/nginx:101.01'''
             }
           }
         }
