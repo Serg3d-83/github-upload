@@ -23,6 +23,7 @@ pipeline {
             steps {
                 echo "Starting new image creation process"
                 sh 'docker build -t serg3d83/nginx:101.01 .'
+               }
             }
         stage ("Docker push") {
             steps {
