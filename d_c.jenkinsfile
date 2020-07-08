@@ -1,0 +1,21 @@
+#!groovy
+//Check centos properties
+properties ([disableConcurrentBuilds()])
+
+pipeline {
+    agent {
+        label 'master'
+          }
+         options {
+                  buildDiscarder (logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+                  timestamps()
+    }
+
+    stages {
+        stage ("Docker-compose run") {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
+    }
+}
