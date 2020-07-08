@@ -12,13 +12,15 @@ pipeline {
     }
 
     stages {
-        stage ("Preparations") {
+        stage ("Hostname") {
             steps {
                 sh 'ssh root@192.168.0.176 \'hostname\''
             }
+        }
+         stage ("Timestamp") {
             steps {
                 sh 'ssh root@192.168.0.176 \'uptime\''
-            }
+            }   
         }
     }
 }
