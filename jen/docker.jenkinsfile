@@ -11,6 +11,16 @@ pipeline {
                   timestamps()}
 
     stages {
+        stage ('Docker_login') {
+            steps {
+                echo 'Trying to login on DockerHub'
+                withCredentials([usernamePassword(credentialsID: 'dhub', usernamevariable: 'Username', passwordVariable: 'Password')])
+                {
+                    sh '$USERNAME'
+                    sh """ docker login -u $USERNAME -p $PASSWORD """
+                }
+            }
+        }
         stage ('Docker build run') {
             steps {
                 echo 'Starting new image creation process'
@@ -20,7 +30,7 @@ pipeline {
         stage ('Docker push') {
             steps {
                 echo 'Upload image to DockerHub'
-                sh '''docker push serg3d83/nginx:101.01'''
+                sh '''docker push serg3d83:101.01'''
             }
           }
         }
