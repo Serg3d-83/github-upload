@@ -1,0 +1,22 @@
+#!groovy
+//Check centos properties
+properties ([disableConcurrentBuilds()])
+
+pipeline {
+    agent {
+        label 'master'
+          }
+         options {
+                  buildDiscarder (logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+                  timestamps()
+    }
+
+    stages {
+        stage ("Docker build run") {
+            steps {
+                echo "Starting new image creation process"
+                sh 'docker build -t serg3d83/nginx:101.01 .'
+            }
+        }
+    }
+}
