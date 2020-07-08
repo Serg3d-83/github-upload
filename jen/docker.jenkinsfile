@@ -8,17 +8,18 @@ pipeline {
           }
          options {
                   buildDiscarder (logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-                  timestamps()
-    }
+                  timestamps()}
 
     stages {
         stage ("Docker login") {
             steps {
                 echo "STrying to login on DockerHub"
-                WithCredentials([UsernamePassword(credentialsID:'dockerhub', usernamevariable: 'Username', passwordVariable: 'Password')]){
-                    sh """ docker login -u $USERNAME -p $PASSWORD """
+                WithCredentials
+                ([UsernamePassword(credentialsID:'dockerhub', usernamevariable: 'Username', passwordVariable: 'Password')])
+                {sh """ docker login -u $USERNAME -p $PASSWORD """
                 }
             }
+        }
         stage ("Docker build run") {
             steps {
                 echo "Starting new image creation process"
@@ -29,6 +30,7 @@ pipeline {
                 echo "Upload image to DockerHub"
                 sh '''docker push serg3d83:101.01'''
             }
+          }
         }
     }
 }
