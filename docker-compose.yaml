@@ -17,8 +17,8 @@ services:
   volumes:
     - ./shara:/var/www/html
   ports:
-   - 80:80
-   
- volumes:
+  - 80:80
+
+volumes:
  wordpress:
  db:
