@@ -14,13 +14,13 @@ pipeline {
         stage ('Docker build run') {
             steps {
                 echo 'Starting new image creation process'
-                sh 'docker build -t serg3d83/master:101.01 .'
+                sh 'docker build -t serg3d83/nginx:101.01 .'
                }
             }
         stage ('Docker push') {
             steps {
                 echo 'Upload image to DockerHub'
-                sh '''docker push serg3d83/master:101.01'''
+                sh '''docker push serg3d83/nginx:101.01'''
             }
           }
         }
