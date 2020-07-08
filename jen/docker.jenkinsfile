@@ -8,8 +8,14 @@ pipeline {
           }
          options {
                   buildDiscarder (logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+<<<<<<< HEAD
                   timestamps()}
 
+=======
+                  timestamps()
+    }
+}
+>>>>>>> d24db84c4afe901375a6be6e2725cad3291fa8e0
     stages {
         stage ("Docker login") {
             steps {
@@ -24,6 +30,7 @@ pipeline {
             steps {
                 echo "Starting new image creation process"
                 sh 'docker build -t serg3d83/nginx:101.01 .'
+               }
             }
         stage ("Docker push") {
             steps {
@@ -33,4 +40,3 @@ pipeline {
           }
         }
     }
-}
