@@ -7,34 +7,28 @@ pipeline {
         label 'master'
           }
          options {
-                  buildDiscarder (logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-<<<<<<< HEAD
+                  buildDiscarder (logRotator(numToKeepStr: '10', artifactNumToKeepStr: '2'))
                   timestamps()}
 
-=======
-                  timestamps()
-    }
-}
->>>>>>> d24db84c4afe901375a6be6e2725cad3291fa8e0
     stages {
-        stage ("Docker login") {
+        stage ('Docker_login') {
             steps {
-                echo "STrying to login on DockerHub"
+                echo 'STrying to login on DockerHub'
                 WithCredentials
-                ([UsernamePassword(credentialsID:'dockerhub', usernamevariable: 'Username', passwordVariable: 'Password')])
-                {sh """ docker login -u $USERNAME -p $PASSWORD """
+                ([UsernamePassword(credentialsID:'dockerhub', usernamevariable: 'Uname', passwordVariable: 'Pass')])
+                {sh """ docker login -u $UNAME -p $PASS """
                 }
             }
         }
-        stage ("Docker build run") {
+        stage ('Docker build run') {
             steps {
-                echo "Starting new image creation process"
+                echo 'Starting new image creation process'
                 sh 'docker build -t serg3d83/nginx:101.01 .'
                }
             }
-        stage ("Docker push") {
+        stage ('Docker push') {
             steps {
-                echo "Upload image to DockerHub"
+                echo 'Upload image to DockerHub'
                 sh '''docker push serg3d83:101.01'''
             }
           }
