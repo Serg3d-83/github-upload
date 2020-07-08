@@ -16,6 +16,9 @@ pipeline {
             steps {
                 sh 'ssh root@192.168.0.176 \'hostname\''
             }
+            steps {
+                sh 'ssh root@192.168.0.176 \'uptime\''
+            }
         }
     }
 }
