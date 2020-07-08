@@ -1,0 +1,26 @@
+#!groovy
+//Check centos properties
+properties ([disableConcurrentBuilds()])
+
+pipeline {
+    agent {
+        label 'master'
+          }
+         options {
+                  buildDiscarder (logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+                  timestamps()
+    }
+
+    stages {
+        stage ("Hostname") {
+            steps {
+                sh 'ssh root@192.168.0.176 \'hostname\''
+            }
+        }
+         stage ("Timestamp") {
+            steps {
+                sh 'ssh root@192.168.0.176 \'uptime\''
+            }   
+        }
+    }
+}
